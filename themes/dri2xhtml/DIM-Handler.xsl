@@ -3,9 +3,9 @@
 <!--
   DS-METS-1.0-DIM.xsl
 
-  Version: $Revision$
+  Version: $Revision: 4901 $
  
-  Date: $Date$
+  Date: $Date: 2010-05-10 04:27:40 +0000 (Mon, 10 May 2010) $
  
   Copyright (c) 2002-2005, Hewlett-Packard Company and Massachusetts
   Institute of Technology.  All rights reserved.
@@ -831,9 +831,15 @@
         
         <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
         	<div class="detail-view-rights-and-license">
+        		<h3><i18n:text>xmlui.dri2xhtml.METS-1.0.copyright</i18n:text></h3>
 		        <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
 		            <p class="copyright-text">
 		                <xsl:copy-of select="dim:field[@element='rights'][not(@qualifier)]/node()"/>
+		            </p>
+		        </xsl:if>
+		        <xsl:if test="string-length(dim:field[@element='rights'][@qualifier='license'])&gt;0">
+		            <p class="license-text">
+		                <xsl:copy-of select="dim:field[@element='rights'][@qualifier='license']/node()"/>
 		            </p>
 		        </xsl:if>
         	</div>
@@ -977,6 +983,7 @@
         
         <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
         	<div class="detail-view-rights-and-license">
+        		<h3><i18n:text>xmlui.dri2xhtml.METS-1.0.copyright</i18n:text></h3>
 	            <p class="copyright-text">
 	                <xsl:copy-of select="dim:field[@element='rights'][not(@qualifier)]/node()"/>
 	            </p>

@@ -3,9 +3,9 @@
 <!--
   structural.xsl
 
-  Version: $Revision$
+  Version: $Revision: 3705 $
  
-  Date: $Date$
+  Date: $Date: 2009-04-11 19:02:24 +0200 (Sat, 11 Apr 2009) $
  
   Copyright (c) 2002-2005, Hewlett-Packard Company and Massachusetts
   Institute of Technology.  All rights reserved.
@@ -163,6 +163,9 @@
         references to stylesheets pulled directly from the pageMeta element. -->
     <xsl:template name="buildHead">
         <head>
+	<!-- Added Google verification code - 2010/08/18 by H Hgibson for Ina Smith's webmaster account. hgibson@sun.ac.za -->
+	    <meta name="google-site-verification" content="KeRkRlyls8UojXedMiCo2w_3qfhwTNm-fLwrU12WBhM" />
+
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta name="Generator">
               <xsl:attribute name="content">
@@ -354,7 +357,7 @@
                 </xsl:choose>
             </ul>
            
-            
+<!--            
             <xsl:choose>
                 <xsl:when test="/dri:document/dri:meta/dri:userMeta/@authenticated = 'yes'">
                     <div id="ds-user-box">
@@ -396,6 +399,7 @@
                     </div>
                 </xsl:otherwise>
             </xsl:choose>
+-->
             
         </div>
     </xsl:template>
@@ -406,7 +410,22 @@
         <div id="ds-footer">
             <i18n:text>xmlui.dri2xhtml.structural.footer-promotional</i18n:text>
             <div id="ds-footer-links">
-                <a>
+		<!-- Extra help and info links added by H Gibson-->
+		<a>
+                    <xsl:attribute name="href">
+                        <xsl:text>http://blogs.sun.ac.za/sunscholar</xsl:text>
+                    </xsl:attribute>
+                    <i18n:text>xmlui.dri2xhtml.structural.news-link</i18n:text>
+                </a>
+		<xsl:text> | </xsl:text>
+		<a>
+                    <xsl:attribute name="href">
+                        <xsl:text>http://wiki.lib.sun.ac.za/index.php/SUNScholar</xsl:text>
+                    </xsl:attribute>
+                    <i18n:text>xmlui.dri2xhtml.structural.help-link</i18n:text>
+                </a>
+		<xsl:text> | </xsl:text>                
+		<a>
                     <xsl:attribute name="href">
                         <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
                         <xsl:text>/contact</xsl:text>
@@ -1468,7 +1487,7 @@
     <xsl:template match="dri:div/dri:head" priority="3">
         <xsl:variable name="head_count" select="count(ancestor::dri:div)"/>
         <!-- with the help of the font-sizing variable, the font-size of our header text is made continuously variable based on the character count -->
-        <xsl:variable name="font-sizing" select="365 - $head_count * 80 - string-length(current())"></xsl:variable>
+        <xsl:variable name="font-sizing" select="365 - $head_count * 200 - string-length(current())"></xsl:variable>
         <xsl:element name="h{$head_count}">
             <!-- in case the chosen size is less than 120%, don't let it go below. Shrinking stops at 120% -->
             <xsl:choose>
